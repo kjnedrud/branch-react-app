@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import env from './env';
 
+import UsersTable from './components/UsersTable.jsx';
+
 const client = new ApolloClient({
   uri: env.GRAPHQL_ENDPOINT,
   request: operation => {
@@ -37,11 +39,17 @@ const App = () => {
   }
 
   return (
+    <>
+    <section className="container">
+      <h1>Users</h1>
+      <UsersTable users={data.allUsers} />
+    </section>
     <pre>
       <code>
         {JSON.stringify(data, null, 2)}
       </code>
     </pre>
+    </>
   )
 }
 
