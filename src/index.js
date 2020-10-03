@@ -41,7 +41,10 @@ const App = () => {
   return (
     <>
     <section className="container">
-      <h1>Users</h1>
+      <header>
+        <h1>Users</h1>
+        <button className="danger" disabled>Delete</button>
+      </header>
       <UsersTable users={data.allUsers} />
     </section>
     <pre>

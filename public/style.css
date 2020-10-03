@@ -11,6 +11,34 @@ section {
     padding: 4em;
 }
 
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    width: 1024px;
+}
+
+header {
+    align-items: flex-start;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding-bottom: 1em;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/**
+ * Tables
+ */
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -20,9 +48,15 @@ tr:hover td {
     background: #fafafa;
 }
 
-th {
+tr:hover button {
+    color: #0070c9;
+}
+
+th, td {
     border-bottom: 1px solid #e5e5e5;
-    border-top: 1px solid #e5e5e5;
+}
+
+th {
     color:  #777;
     font-weight: normal;
     padding: 0.5em 1em;
@@ -31,14 +65,96 @@ th {
 }
 
 td {
-    border-bottom: 1px solid #e5e5e5;
     padding: 1em;
     text-align: left;
 }
 
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    width: 1024px;
+/**
+ * Forms and Buttons
+ */
+
+button, .button {
+    background: #0070c9;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    padding: 0.5em 2em;
+}
+
+button.danger {
+    background: transparent;
+    border: 1px solid #ee0000;
+    color: #ee0000;
+}
+
+button.plain {
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+button.danger:disabled {
+    border: 1px solid #b8b8b8;
+    color: #b8b8b8;
+    cursor: default;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type=radio] + label {
+    display: inline-block;
+    font-weight: normal;
+}
+
+/**
+ * Edit User Form
+ */
+
+.edit-user-form {
+}
+
+.form-content {
+    display: grid;
+    grid-template-columns: 50fr 50fr;
+    margin-top: 1.5em;
+}
+
+.form-column {
+    border-left: 1px solid #e5e5e5;
+    padding: 1.5em;
+}
+
+.form-column:first-child {
+    border-left: 0;
+}
+
+/**
+ * Modals
+ */
+
+.modal-overlay {
+    background: rgba(0,0,0,0.5);
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.modal-overlay.open {
+    display: block;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 4em;
 }
