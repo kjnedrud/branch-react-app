@@ -5,7 +5,7 @@
 
 import React, {useState} from 'react';
 
-const Row = (props) => {
+const UserForm = (props) => {
 
   const [userState, setUserState] = useState(props.user);
 
@@ -42,15 +42,15 @@ const Row = (props) => {
   ];
 
   return (<form className="edit-user-form">
-    <div class="container">
+    <section className="container">
       <header>
         <h1>{props.user.email}</h1>
         <button type="submit">Save</button>
       </header>
 
-      <div class="form-content">
+      <div className="form-content">
         <div className="form-column">
-          <label for="name-field">Name</label>
+          <label htmlFor="name-field">Name</label>
           <input id="name-field" type="text" name="name" value={userState.name} onChange={inputChange} />
         </div>
 
@@ -58,16 +58,16 @@ const Row = (props) => {
           <label>Role</label>
           {roles.map((role, roleIndex) => {
             return (
-              <div className="radio-choice">
+              <div className="radio-choice" key={roleIndex}>
                 <input id={`role-field-${role.key}`} type="radio" name="role" value={role.key} checked={role.key == userState.role} onChange={inputChange} />
-                <label for={`role-field-${role.key}`}>{role.label}</label>
+                <label htmlFor={`role-field-${role.key}`}>{role.label}</label>
               </div>
             );
           })}
         </div>
       </div>
-    </div>
+    </section>
   </form>);
 };
 
-export default Row;
+export default UserForm;

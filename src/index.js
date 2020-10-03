@@ -2,9 +2,11 @@ import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import ApolloClient, { gql } from 'apollo-boost';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import env from './env';
 
-import UsersTable from './components/UsersTable.jsx';
+import Users from './components/pages/Users.jsx';
+import EditUser from './components/pages/EditUser.jsx';
 
 const client = new ApolloClient({
   uri: env.GRAPHQL_ENDPOINT,
@@ -39,20 +41,12 @@ const App = () => {
   }
 
   return (
-    <>
-    <section className="container">
-      <header>
-        <h1>Users</h1>
-        <button className="danger" disabled>Delete</button>
-      </header>
-      <UsersTable users={data.allUsers} />
-    </section>
-    <pre>
-      <code>
-        {JSON.stringify(data, null, 2)}
-      </code>
-    </pre>
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" render={(props) => (<Users {...props} data={data} />)}></Route>
+        <Route exact path="/edit-user" render={(props) => (<EditUser {...props} data={data} />)}></Route>
+      </Switch>
+    </BrowserRouter>
   )
 }
 

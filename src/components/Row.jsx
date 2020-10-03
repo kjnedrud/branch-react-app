@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Row = (props) => {
 
@@ -17,7 +18,10 @@ const Row = (props) => {
         <input type="checkbox" />
       </td>
       <td>
-        <button type="button" className="plain" title="Edit User" onClick={editUserModal}>{props.user.email}</button>
+        {/*<button type="button" className="plain" title="Edit User" onClick={editUserModal}>{props.user.email}</button>*/}
+        <Link to={`/edit-user?email=${props.user.email}`}>
+          {props.user.email}
+        </Link>
       </td>
       <td>
         {props.user.name}

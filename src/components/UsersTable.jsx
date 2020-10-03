@@ -5,7 +5,7 @@
 
 import React, {useState} from 'react';
 import Row from './Row.jsx';
-import EditUser from './EditUser.jsx';
+import UserForm from './UserForm.jsx';
 
 const UsersTable = (props) => {
 
@@ -26,7 +26,7 @@ const UsersTable = (props) => {
 
   // open modal with EditUser form
   const editUser = function(user) {
-    openModal(<EditUser user={user} />);
+    openModal(<UserForm user={user} />);
   }
 
   return (
