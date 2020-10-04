@@ -2,9 +2,10 @@
  * EditUser page
  */
 
-import { ApolloProvider, useQuery, useMutation } from '@apollo/react-hooks';
-import ApolloClient, { gql } from 'apollo-boost';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router'
 
 const EditUser = (props) => {
 
@@ -33,10 +34,12 @@ const EditUser = (props) => {
       }
     }
   `;
-  const [saveUser, { user }] = useMutation(UPDATE_USER_MUTATION);
+  const [saveUser] = useMutation(UPDATE_USER_MUTATION);
 
   // keep track of user state
   const [userState, setUserState] = useState(null);
+
+  const history = useHistory();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -90,6 +93,9 @@ const EditUser = (props) => {
           email: email,
           newAttributes: userState,
         },
+      }).then(response => {
+        // go back to Users page
+        history.push('/');
       });
     }
   }
@@ -113,7 +119,7 @@ const EditUser = (props) => {
             {roles.map((role, roleIndex) => {
               return (
                 <div className="radio-choice" key={roleIndex}>
-                  <input id={`role-field-${role.key}`} type="radio" name="role" value={role.key} defaultChecked={role.key == data.user.role} onChange={changeInput} />
+                  <input id={`role-field-${role.key}`} type="radio" name="role" value={role.key} defaultChecked={role.key === data.user.role} onChange={changeInput} />
                   <label htmlFor={`role-field-${role.key}`}>{role.label}</label>
                 </div>
               );

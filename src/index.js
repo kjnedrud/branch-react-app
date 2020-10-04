@@ -1,5 +1,5 @@
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
-import ApolloClient, { gql } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -19,32 +19,13 @@ const client = new ApolloClient({
   }
 });
 
-const ALL_USERS_QUERY = gql`
-  query {
-    allUsers {
-      email
-      name
-      role
-    }
-  }
-`;
-
 const App = () => {
-  const { loading, error, data } = useQuery(ALL_USERS_QUERY);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {JSON.stringify(error)}</p>;
-  }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <Switch>
-        <Route exact path="/" render={(props) => (<Users {...props} data={data} client={client} />)}></Route>
-        <Route exact path="/edit-user" render={(props) => (<EditUser {...props} data={data} client={client} />)}></Route>
+        <Route exact path="/" component={Users} />
+        <Route exact path="/edit-user" component={EditUser} />
       </Switch>
     </BrowserRouter>
   )

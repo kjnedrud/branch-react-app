@@ -8,14 +8,14 @@ import { Link } from 'react-router-dom';
 
 const Row = (props) => {
 
-  const editUserModal = function(e) {
-    props.onEdit(props.user);
+  const checkboxChange = function(e) {
+    props.onCheckboxChange(props.user.email, e.currentTarget.checked);
   }
 
   return (
     <tr>
       <td>
-        <input type="checkbox" />
+        <input type="checkbox" onChange={checkboxChange} />
       </td>
       <td>
         <Link to={`/edit-user?email=${props.user.email}`}>
