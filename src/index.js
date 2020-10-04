@@ -43,8 +43,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={(props) => (<Users {...props} data={data} />)}></Route>
-        <Route exact path="/edit-user" render={(props) => (<EditUser {...props} data={data} />)}></Route>
+        <Route exact path="/" render={(props) => (<Users {...props} data={data} client={client} />)}></Route>
+        <Route exact path="/edit-user" render={(props) => (<EditUser {...props} data={data} client={client} />)}></Route>
       </Switch>
     </BrowserRouter>
   )
